@@ -27,6 +27,7 @@ Route::prefix('/v1')->namespace('Api\v1')->group(function(){
         Route::get('work','WorkController@index');
         Route::post('work','WorkController@store');
         Route::put('changeStatus/{work}', 'WorkController@changeStatus');
+        Route::delete('work/{work}','WorkController@destroy');
     });
 
 });

@@ -14,6 +14,7 @@
 Route::get('/', 'WorkController@index')->name('home');
 Route::post('/addWork', 'WorkController@store')->name('addWord');
 Route::put('/changeStatus/{work}', 'WorkController@changeStatus')->name('changeStatus');
+Route::delete('/delete/{work}','WorkController@destroy')->name('destroy');
 
 Auth::routes();
 

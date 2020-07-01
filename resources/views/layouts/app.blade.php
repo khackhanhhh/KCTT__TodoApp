@@ -101,6 +101,28 @@
                         '<button class="done ml-3" id="'+ data.work.id +'">Click to '+ data.status +'</button>' +
                         '</div>'
                         );
+
+                        $('.done').on('click',function(){
+                            var id = $(this).attr('id');
+                            $.ajax({
+                                type: 'put',
+                                url: '/changeStatus/' + id,
+                                data: '',
+                                cache: false,
+                                success: function(data){
+                                    if(data.status == 'UnDone')
+                                    {
+                                        $('#work' + id).removeClass('text-light');
+                                        $('#work' + id).addClass('text-success');
+                                    }
+                                    else{
+                                        $('#work' + id).removeClass('text-success');
+                                        $('#work' + id).addClass('text-light');
+                                    }
+                                    $(".button" + id).html('Click to '+ data.status);
+                                }
+                            });
+                        });
                     }
                 });
             });
@@ -123,6 +145,24 @@
                             $('#work' + id).addClass('text-light');
                         }
                         $(".button" + id).html('Click to '+ data.status);
+                    }
+                });
+            });
+
+            $('.delete').on('click',function(){
+                $confirm = confirm('Are u sure ??');
+                if($confirm == false)
+                {
+                    return false;
+                }
+                var id = $(this).data('id');
+                $.ajax({
+                    type: 'delete',
+                    url: '/delete/' + id,
+                    data: '',
+                    cache: false,
+                    success: function(data){
+                        $('#work' + id).remove();
                     }
                 });
             });

@@ -51,4 +51,13 @@ class WorkController extends Controller
             'status' => $status
         ], 200);
     }
+
+    public function destroy(Work $work)
+    {
+        $work->delete();
+
+        return response()->json([
+            'status' => 'success'
+        ], 200);
+    }
 }
